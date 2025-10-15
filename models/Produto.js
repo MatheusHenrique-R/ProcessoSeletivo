@@ -19,4 +19,7 @@ const Produto = dp.sequelize.define("Produtos", {
   freezeTableName: true,
 });
 
+//Apagar ou comentar a linha logo abaixo
+Produto.sync({ force: true });
+
 module.exports = Produto;

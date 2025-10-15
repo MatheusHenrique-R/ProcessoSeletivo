@@ -8,4 +8,7 @@ const Categoria = dp.sequelize.define("Categoria", {
   freezeTableName: true,
 });
 
+//Apagar ou comentar a linha logo abaixo
+Categoria.sync({ force: true });
+
 module.exports = Categoria;

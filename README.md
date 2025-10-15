@@ -11,4 +11,10 @@
 
 3.  Abra a pasta DESAFIO_BACK_ASCII_Matheus Henrique Ribeiro Cardoso no Visual Studio Code (VS Code).
 
-4.  Abra o terminal do VS Code e execute a seguinte linha. 4.1: npx sequelize-cli db:create
+4.  Abra o terminal do VS Code e execute a seguinte linha. 4.1: npx sequelize-cli db:create.
+
+5.  Tendo o node.js instalado na sua maquina, abra um novo cmd execute a linha: npm install --save nodemon.
+
+6.  Direcione seu cmd até ao arquivo baixado e execute a linha: nodemon app.js.
+
+7.  Vá até a pasta models e nos arquivos Categoria.js e Produto.js comente ou apague as linhas determinadas.
