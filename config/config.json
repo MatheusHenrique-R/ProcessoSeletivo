@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "prosel",
+    "password": "SenhaForte",
+    "database": "ProSel",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "prosel",
+    "password": "SenhaForte",
+    "database": "ProSelTest",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "prosel",
+    "password": "SenhaForte",
+    "database": "ProSelProduction",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
