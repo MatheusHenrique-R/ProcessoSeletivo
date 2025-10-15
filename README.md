@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Processo Seletivo Empresa Junior
 
 ## Instruções
@@ -18,3 +19,7 @@
 6.  Direcione seu cmd até ao arquivo baixado e execute a linha: nodemon app.js.
 
 7.  Vá até a pasta models e nos arquivos Categoria.js e Produto.js comente ou apague as linhas determinadas.
+=======
+# ProcessoSeletivo
+Desafio back end do processo seletivo da empresa junior ASCII.
+>>>>>>> 0939372cb97140ab35e8c8722a33ac2246bc3a98
