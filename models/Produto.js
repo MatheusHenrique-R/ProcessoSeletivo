@@ -1,25 +1,21 @@
-const dp = require("./index");
+const dp = require("./dp");
 
-const Produto = dp.sequelize.define("Produtos", {
-  Nome: {
+const Produto = dp.sequelize.define("Produto", {
+  nome: {
     type: dp.Sequelize.STRING,
     allowNull: false,
   },
-  Preço: {
+  preço: {
     type: dp.Sequelize.DOUBLE,
     allowNull: false,
   },
-  Categoria: {
-    type: dp.Sequelize.INTEGER,
-    references: {
-      model: "Categoria",
-      key: "id",
-    },
+  categoria: {
+    type: dp.Sequelize.STRING,
+    allowNull: false,
   },
-  freezeTableName: true,
 });
 
-//Apagar ou comentar a linha logo abaixo
+//Apagar ou comentar a linha abaixo apos rodas o app.js
 Produto.sync({ force: true });
 
 module.exports = Produto;
