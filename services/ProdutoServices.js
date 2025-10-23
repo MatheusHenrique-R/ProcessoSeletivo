@@ -64,8 +64,43 @@ async function criarProduto(dadosProduto) {
   }
 }
 
+// Serviço para atualizar um produto existente
+async function atualizarProduto(id, dadosProduto) {
+  const { nome, preço, categoria } = dadosProduto;
+  const erros = validarDadosProduto(nome, preço, categoria);
+
+  if (erros.length > 0) {
+    return { sucesso: false, erros: erros };
+  }
+
+  try {
+    const editProduto = await Produto.findOne({
+      where: { id: id },
+      raw: false,
+    });
+
+    if (!editProduto) {
+      return {
+        sucesso: false,
+        mensagem: "Este produto não existe",
+      };
+    }
+
+    editProduto.nome = nome;
+    editProduto.preço = preço;
+    editProduto.categoria = categoria;
+    await editProduto.save();
+
+    return { sucesso: true, produto: editProduto };
+  } catch (error) {
+    console.error("Erro no serviço de atualização de produto:", error);
+    throw new Error("Houve um erro ao tentar atualizar o produto.");
+  }
+}
+
 module.exports = {
   listarProdutos,
   buscarProdutoPorId,
   criarProduto,
+  atualizarProduto,
 };

@@ -49,4 +49,29 @@ router.post("/produtos", async function (req, res) {
   }
 });
 
+// Rota para atualizar um produto existente
+router.put("/produtos/:id", async function atualizarProduto(req, res) {
+  const id = req.params.id;
+
+  try {
+    const resultado = await ProdutoService.atualizarProduto(id, req.body);
+
+    if (resultado.sucesso) {
+      req.flash("success_msg", "Produto atualizado com sucesso!");
+      res.redirect("/api/produtos");
+    } else if (resultado.erros) {
+      res.render("api/produtos", { editar: resultado.erros });
+    } else {
+      req.flash(
+        "error_msg",
+        resultado.mensagem || "Erro desconhecido ao atualizar."
+      );
+      res.redirect("/api/produtos");
+    }
+  } catch (error) {
+    req.flash("error_msg", error.message);
+    res.redirect("/api/produtos");
+  }
+});
+
 module.exports = router;
