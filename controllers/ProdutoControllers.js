@@ -13,4 +13,23 @@ router.get("/produtos", async function (req, res) {
   }
 });
 
+// Rota para buscar um produto por ID
+router.get("/produtos/:id", async function (req, res) {
+  const id = req.params.id;
+
+  try {
+    const produto = await ProdutoService.buscarProdutoPorId(id);
+
+    if (produto) {
+      res.render("api/pesquisaProduto", { produto: produto });
+    } else {
+      req.flash("error_msg", "Produto não encontrado!");
+      res.redirect("/api/produtos");
+    }
+  } catch (error) {
+    req.flash("error_msg", error.message);
+    res.redirect("/api/produtos");
+  }
+});
+
 module.exports = router;

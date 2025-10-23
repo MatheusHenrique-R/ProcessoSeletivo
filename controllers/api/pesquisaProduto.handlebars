@@ -1,0 +1,22 @@
+<h2>Produto pesquisado: </h2>
+<hr />
+
+{{#if produto}}
+  <div class="card mt-4">
+    <div class="card-body">
+      <h4>{{produto.nome}}</h4>
+      <small>Preço: R$ {{produto.preço}}</small><br />
+      <small>Categoria: {{produto.categoria}}</small><br />
+      <a href="/produtos/{{produto.id}}"><button
+          type="submit"
+          class="btn btn-success mt-2"
+        >Atualizar produto</button></a>
+      <form action="/api/produtos/{{produto.id}}?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{produto.id}}" />
+        <button type="submit" class="btn btn-danger mt-2">Deletar produto</button>
+      </form>
+    </div>
+  </div>
+{{else}}
+  <h4 class="mt-3">Produto não encontrado</h4>
+{{/if}}

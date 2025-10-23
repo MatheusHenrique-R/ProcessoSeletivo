@@ -12,6 +12,18 @@ async function listarProdutos() {
   }
 }
 
+// Serviço para buscar um produto por ID
+async function buscarProdutoPorId(id) {
+  try {
+    const produto = await Produto.findOne({ where: { id: id } });
+    return produto ? new ProdutoOutputDTO(produto) : null;
+  } catch (error) {
+    console.error("Erro no serviço de pesquisa de produto", error);
+    throw new Error("Falha ao procurar o produto.");
+  }
+}
+
 module.exports = {
   listarProdutos,
+  buscarProdutoPorId,
 };
