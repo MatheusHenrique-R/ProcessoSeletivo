@@ -1,0 +1,47 @@
+{{#if valid}}
+  {{#each valid}}
+    <div class="alert alert-danger">{{texto}}</div>
+  {{/each}}
+{{/if}}
+
+{{#if editar}}
+  {{#each editar}}
+    <div class="alert alert-danger">{{texto}}</div>
+  {{/each}}
+{{/if}}
+
+<div id="card_edit{{id}}" class="card" style="display: none">
+  <div class="card-body">
+    <h2>Atualizar produto</h2>
+    <form action="/api/produtos/{{id}}?_method=PUT" method="POST">
+      <label for="nome">Nome: </label>
+      <input
+        type="text"
+        id="nome_{{id}}"
+        name="nome"
+        placeholder="Nome do produto"
+        class="form-control"
+        value="{{nome}}"
+      />
+      <label for="preço">Preço: </label>
+      <input
+        type="number"
+        id="preço_{{id}}"
+        name="preço"
+        placeholder="preço do produto"
+        class="form-control"
+        value="{{preço}}"
+      />
+      <label for="categoria">categoria: </label>
+      <input
+        type="text"
+        id="categoria_{{id}}"
+        name="categoria"
+        placeholder="categoria do produto"
+        class="form-control"
+        value="{{categoria}}"
+      />
+      <button type="submit" class="btn btn-success mt-2">Atualizar produto</button>
+    </form>
+  </div>
+</div>

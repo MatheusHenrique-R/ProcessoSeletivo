@@ -8,6 +8,31 @@
   </head>
   <body>
     <div class="container mt-3">
+      <div class="btn-group mt-2" role="group" aria-label="Basic example">
+        <button id="abrir-formulario" class="btn btn-success">Criar novo produto</button>
+        <button id="abrir-pesquisaID" class="btn btn-success">Buscar produto por id</button>
+      </div>
+      {{>_pesquisaID}}
+      {{>_formRegistrarProduto}}
+      <script>
+        document.getElementById('abrir-pesquisaID').addEventListener('click', function(){
+          var pesquisa = document.getElementById('card_pesquisaID');
+          if (pesquisa.style.display === 'none') {
+            pesquisa.style.display = 'block';
+          } else {
+            pesquisa.style.display = 'none';
+          }});
+      </script>
+    
+      <script>
+        document.getElementById('abrir-formulario').addEventListener('click', function() {
+          var formulario = document.getElementById('card_formulario');
+          if (formulario.style.display === 'none') {
+            formulario.style.display = 'block';
+          } else {
+            formulario.style.display = 'none';
+          }});
+      </script>
       {{>_msg}}
       {{{body}}}
     </div>

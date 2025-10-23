@@ -1,0 +1,23 @@
+{{#each valid}}
+
+  <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+
+<div id="card_pesquisaID" class="card" style="display: none">
+  <div class="card-body">
+    <h2>Procurar produto</h2>
+    <form action="/api/produtos/{{id}}" method="GET">
+      <label for="Id">Id do produto: </label>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        placeholder="id do produto"
+        class="form-control"
+      />
+      <button type="submit" class="btn btn-success mt-4">Procurar produto</button>
+    </form>
+  </div>
+</div>
