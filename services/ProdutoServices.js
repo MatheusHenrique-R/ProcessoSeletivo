@@ -98,9 +98,24 @@ async function atualizarProduto(id, dadosProduto) {
   }
 }
 
+// Serviço para deletar um produto
+async function deletarProduto(id) {
+  try {
+    const resultado = await Produto.destroy({ where: { id: id } });
+    if (resultado === 0) {
+      throw new Error("Nenhum produto encontrado com o ID fornecido.");
+    }
+    return { sucesso: true };
+  } catch (error) {
+    console.error("Erro no serviço de exclusão de produto", error);
+    throw new Error("Houve um erro ao deletar o produto.");
+  }
+}
+
 module.exports = {
   listarProdutos,
   buscarProdutoPorId,
   criarProduto,
   atualizarProduto,
+  deletarProduto,
 };

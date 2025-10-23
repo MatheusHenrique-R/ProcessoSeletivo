@@ -74,4 +74,16 @@ router.put("/produtos/:id", async function atualizarProduto(req, res) {
   }
 });
 
+// Rota para deletar um produto
+router.delete("/produtos/:id", async function (req, res) {
+  try {
+    await ProdutoService.deletarProduto(req.params.id);
+    req.flash("success_msg", "Produto deletado com sucesso");
+    res.redirect("/api/produtos");
+  } catch (error) {
+    req.flash("error_msg", error.message);
+    res.redirect("/api/produtos");
+  }
+});
+
 module.exports = router;
