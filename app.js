@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
-const handlebars = require("express-handlebars");
-const bodyParser = require("body-parser");
-const path = require("path");
 const session = require("express-session");
+const handlebars = require("express-handlebars");
+const path = require("path");
 const flash = require("connect-flash");
+const methodOverride = require("method-override");
+const bodyParser = require("body-parser");
 const api = require("./controllers/ProdutoControllers");
 
 //Configurações
@@ -19,16 +20,17 @@ app.use(
 );
 app.use(flash());
 
+//BodyParser
+app.use(bodyParser.urlencoded({ extend: true }));
+app.use(bodyParser.json());
+
 //Middleware
+app.use(methodOverride("_method"));
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
   next();
 });
-
-//BodyParser
-app.use(bodyParser.urlencoded({ extend: true }));
-app.use(bodyParser.json());
 
 //Handlebars
 app.set("views", path.join(__dirname, "controllers"));
@@ -43,5 +45,5 @@ app.use("/api", api);
 //Servidor online
 const PORTA = 8081;
 app.listen(PORTA, function () {
-  console.log("Servidor rodando na url https://localhost:8081");
+  console.log("Servidor rodando na url http://localhost:8081/api/produtos");
 });
