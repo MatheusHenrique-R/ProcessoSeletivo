@@ -32,4 +32,21 @@ router.get("/produtos/:id", async function (req, res) {
   }
 });
 
+// Rota para criar um novo produto
+router.post("/produtos", async function (req, res) {
+  try {
+    const resultado = await ProdutoService.criarProduto(req.body);
+
+    if (resultado.sucesso) {
+      req.flash("success_msg", "Produto registrado com sucesso!");
+      res.redirect("/api/produtos");
+    } else {
+      res.render("api/produtos", { criar: resultado.erros });
+    }
+  } catch (error) {
+    req.flash("error_msg", error.message);
+    res.redirect("/api/produtos");
+  }
+});
+
 module.exports = router;

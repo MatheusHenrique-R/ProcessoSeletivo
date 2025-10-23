@@ -23,7 +23,49 @@ async function buscarProdutoPorId(id) {
   }
 }
 
+// Função de validação
+function validarDadosProduto(nome, preço, categoria) {
+  const erros = [];
+
+  if (!nome || typeof nome === "undefined" || nome === null) {
+    erros.push({ texto: "Nome inválido" });
+  }
+
+  if (!preço || typeof preço === "undefined" || preço === null || preço <= 0) {
+    erros.push({ texto: "preço inválido" });
+  }
+
+  if (!categoria || typeof categoria === "undefined" || categoria === null) {
+    erros.push({ texto: "Categoria inválido" });
+  }
+
+  return erros;
+}
+
+// Serviço para criar um novo produto
+async function criarProduto(dadosProduto) {
+  const { nome, preço, categoria } = dadosProduto;
+  const erros = validarDadosProduto(nome, preço, categoria);
+
+  if (erros.length > 0) {
+    return { sucesso: false, erros: erros };
+  }
+
+  try {
+    const novoProduto = await Produto.create({
+      nome: nome,
+      preço: preço,
+      categoria: categoria,
+    });
+    return { sucesso: true, produto: novoProduto };
+  } catch (error) {
+    console.error("Erro no serviço de registro de produto", error);
+    throw new Error("Falha ao registrar o produto!");
+  }
+}
+
 module.exports = {
   listarProdutos,
   buscarProdutoPorId,
+  criarProduto,
 };
