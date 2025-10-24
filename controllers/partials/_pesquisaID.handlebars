@@ -8,11 +8,11 @@
 <div id="card_pesquisaID" class="card" style="display: none">
   <div class="card-body">
     <h2>Procurar produto</h2>
-    <form action="/api/produtos/{{id}}" method="GET">
-      <label for="Id">Id do produto: </label>
+    <form action="/api/produtos" method="GET">
+      <label for="id_input">Id do produto: </label>
       <input
         type="text"
-        id="id"
+        id="id_input"
         name="id"
         placeholder="id do produto"
         class="form-control"
